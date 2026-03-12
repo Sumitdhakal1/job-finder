@@ -7,13 +7,13 @@ const Home = () => {
         <div className="">
           <div className="space-y-6">
             <h1 className="font-sans text-3xl font-bold uppercase">
-              Job Finder
+              Loksewa Vaceny Finder
             </h1>
           </div>
           <div>
             <p className="text-gray-600 text-lg">
-              we scan 100s of website to find <br /> job based on your
-              pereference
+              Find the latest PSC Nepal vacancies based on your qualification,
+              age, and preference.
             </p>
           </div>
         </div>
@@ -23,12 +23,12 @@ const Home = () => {
             <div className="mb-6">
               <div>
                 <h1 className="font-sans text-4xl font-bold uppercase">
-                  Find your dream job
+                  Find a vacency
                 </h1>
               </div>
               <div>
                 <span className="text-gray-600 text-lg">
-                  fill your information to find job
+                  Fill in your details to find matching vacancies
                 </span>
               </div>
             </div>

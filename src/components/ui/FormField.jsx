@@ -1,6 +1,13 @@
 import React from "react";
 
-const FormField = ({ label, type = "text", name, placeholder, options }) => {
+const FormField = ({
+  label,
+  type = "text",
+  name,
+  placeholder,
+  options,
+  onChange,
+}) => {
   return (
     <div className="flex flex-col gap-1">
       <label className="text-sm font-semibold text-gray-600 uppercase">
@@ -11,12 +18,13 @@ const FormField = ({ label, type = "text", name, placeholder, options }) => {
           name={name}
           className="w-full border rounded-lg p-3 h-11 text-sm"
           defaultValue=""
+          onChange={onChange}
         >
-          <option value="" disabled>
-            {placeholder || `Select ${label}`}
-          </option>
+          <option disabled>{placeholder || `Select ${label}`}</option>
           {options.map((option) => (
-            <option key={option.value}>{option.label}</option>
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
           ))}
         </select>
       ) : (
@@ -25,6 +33,7 @@ const FormField = ({ label, type = "text", name, placeholder, options }) => {
           type={type}
           placeholder={placeholder}
           className="w-full border rounded-lg p-3 h-11 text-sm"
+          onChange={onChange}
         />
       )}
     </div>

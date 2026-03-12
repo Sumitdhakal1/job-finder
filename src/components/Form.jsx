@@ -1,80 +1,84 @@
-import React from "react";
+import { useState } from "react";
 import FormField from "./ui/FormField";
 import {
   Education,
-  Gender,
-  JobType,
-  Experience,
-  WorkMode,
+  Quota,
+  ServiceType,
+  PostLevel,
+  AgeGroup,
 } from "../constant/formdata";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    education: "",
+    ageGroup: "",
+    service: "",
+    level: "",
+    quota: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/results", { state: formData });
+  };
+
   return (
     <form
-      action=""
-      className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-full mx-auto"
+      className="grid grid-cols-1 md:grid-cols-2 gap-5"
+      onSubmit={handleSubmit}
     >
-      <div className="flex flex-col gap-4">
-        <div className=" flex flex-col gap-4">
-          <FormField
-            label="Age"
-            name="age"
-            type="number"
-            placeholder="e.g. 25"
-          />
-          <FormField
-            label="Skills"
-            name="skills"
-            type="text"
-            placeholder="Enter your skills"
-          />
-          <FormField
-            label="Highest Education"
-            name="education"
-            options={Education}
-            placeholder="Select Education"
-          />
-          <FormField
-            label="field of study"
-            name="study"
-            type="text"
-            placeholder="e.g. Computer Science"
-          />
-        </div>
-      </div>
-      {/* second */}
-      <div className="flex flex-col gap-4">
-        <div className=" flex flex-col gap-4">
-          <FormField
-            label="Gender"
-            name="gender"
-            options={Gender}
-            placeholder="Select Gender"
-          />
-          <FormField
-            label="Experience Level"
-            name="experience"
-            options={Experience}
-            placeholder="Select Experience"
-          />
-          <FormField
-            label="Job Type"
-            name="job"
-            options={JobType}
-            placeholder="Select job type"
-          />
+      <FormField
+        label="Education"
+        name="education"
+        options={Education}
+        placeholder="All Education Levels"
+        onChange={handleChange}
+      />
+      <FormField
+        label="Age Group"
+        name="ageGroup"
+        options={AgeGroup}
+        placeholder="All Ages"
+        onChange={handleChange}
+      />
+      <FormField
+        label="Service Type"
+        name="service"
+        options={ServiceType}
+        placeholder="All Services"
+        onChange={handleChange}
+      />
+      <FormField
+        label="Post Level"
+        name="level"
+        options={PostLevel}
+        placeholder="All Levels"
+        onChange={handleChange}
+      />
 
-          <FormField
-            label="Work Mode"
-            name="workMode"
-            options={WorkMode}
-            placeholder=" Select Work Mode"
-          />
-        </div>
+      <div className="md:col-span-2">
+        <FormField
+          label="Quota / Category"
+          name="quota"
+          options={Quota}
+          placeholder="All Quota"
+          onChange={handleChange}
+        />
       </div>
-      <div className=" md:col-span-2 flex justify-center border bg-blue-600 text-white p-4 rounded-2xl">
-        <button type="submit" className="bold text-xl">
-          Find Jobs
+
+      <div className="md:col-span-2">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition"
+        >
+          Find Loksewa Vacancies →
         </button>
       </div>
     </form>
